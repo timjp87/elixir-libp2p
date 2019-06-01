@@ -38,7 +38,8 @@ defmodule Libp2p.MixProject do
       {:protobuf, "~> 0.5.3"},
       {:poolboy, "~> 1.5"},
       {:basefiftyeight, "~> 0.1.0"},
-      {:multiaddr, "~> 1.1"}
+      {:multiaddr, "~> 1.1"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 end
