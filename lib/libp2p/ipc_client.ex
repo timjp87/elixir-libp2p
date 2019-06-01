@@ -8,6 +8,7 @@ defmodule Libp2p.IpcClient do
     with {:ok, response} <- call_ipc(payload) do
       decoded_body = P2pd.Pb.Response.decode(response)
 
+      # TODO: Rework error handling
       case decoded_body.type do
         0 -> decoded_body
         _ -> {:error, decoded_body.errorrespons}
