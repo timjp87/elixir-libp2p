@@ -17,9 +17,15 @@ defmodule Libp2p.Peer do
   @doc """
   Clients issue a Connect request when they wish to connect to a known peer on a given set of addresses.
   """
-  def connect(peer, addrs, timeout \\ 2) do
+  def connect(peer, addr, timeout \\ 2) do
     peer = from_string(peer)
-    addrs = :multiaddr.new(addrs)
+
+    addr =
+      addr
+      |> String.to_charlist()
+      |> :multiaddr.new()
+
+    addrs = List.insert_at([], 0, addr)
     connect_request = ConnectRequest.new(peer: peer, addrs: addrs, timeout: timeout)
 
     Request.new(type: Request.Type.value(:CONNECT), connect: connect_request)
