@@ -40,7 +40,7 @@ defmodule Libp2p.Peer do
     peer = from_string(peer)
     disconnect_request = DisconnectRequest.new(peer: peer)
 
-    Request.new(type: Request.Type.value(:DISCONNECT), connect: disconnect_request)
+    Request.new(type: Request.Type.value(:DISCONNECT), disconnect: disconnect_request)
     |> Serialize.serialize()
     |> IpcClient.post_request()
   end
